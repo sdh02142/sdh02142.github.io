@@ -1,0 +1,17 @@
+#banner {
+  grid-area: b;
+  background-color: blueviolet;
+  text-align: center;
+  color: white;
+  font-size: xx-large;
+  padding: 15px;
+  text-shadow: 3px 3px 5px aquamarine;
+  /*        x축, y축, 흐림 정도, 그림자 색상        */
+}
+
+/* width, height 설정할 때, padding, border의 크기를
+width, height
+ */
+* {
+  box-sizing: border-box;
+}

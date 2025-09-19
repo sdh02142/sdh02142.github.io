@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="./css/common.css" />
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css" />
+    <link rel="stylesheet" type="text/css" href="./css/footer.css" />
+    <style>
+      main {
+        padding: 20px 0px;
+      }
+      main h1 {
+        text-align: center;
+        padding: 5px;
+      }
+
+      main form {
+        height: 340px;
+        border: 1px solid gray;
+        padding: 40px;
+      }
+
+      main .form-item {
+        margin-bottom: 10px;
+      }
+
+      main .form-item label {
+        display: inline-block;
+        /*
+         inline 요소여서 좌우 공간을 부여해도
+         크기가 늘어난 것처럼 표시되지 않음
+
+         inline-block 속성을 부여하면
+         줄바꿈 없이 좌우 크기가 늘어남
+         */
+        width: 150px;
+        font-size: 18px;
+      }
+
+      main .form-item input {
+        font-size: 18px;
+        border: 1px solid skyblue;
+        width: 200px;
+      }
+
+      main form button {
+        float: right;
+        width: 100px;
+        font-size: 18px;
+        padding: 5px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li class="logo">
+            <a href="index.html"><img src="./img/logo.jpg" alt="logo" /></a>
+          </li>
+          <li><a href="./personal.html">개인</a></li>
+          <li><a href="./business.html">기업</a></li>
+          <li><a href="./login.html">로그인</a></li>
+          <li><a href="./register.html">회원가입</a></li>
+        </ul>
+      </nav>
+
+      <br />
+    </header>
+    <div id="banner">지금 당신의 행복! IT's KB Life</div>
+    <main>
+      <h1>Register</h1>
+      <form action="./index.html" method="post" novalidate>
+        <div class="form-item">
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" required autofocus />
+        </div>
+        <div class="form-item">
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-item">
+          <label for="phone">연락처</label>
+          <input type="tel" id="phone" name="phone" />
+        </div>
+        <div class="form-item">
+          <label for="pwd">비밀번호</label>
+          <input type="password" id="pwd" name="pwd" />
+        </div>
+        <div class="form-item">
+          <label for="pwdConfirm">비밀번호 확인</label>
+          <input type="password" id="pwdConfirm" name="pwdConfirm" />
+        </div>
+        <hr />
+        <button type="button" id="registerBtn">회원가입</button>
+      </form>
+    </main>
+    <footer>
+      <ul>
+        <li>
+          12345&nbsp;&nbsp;address&nbsp;&nbsp;1&nbsp;&nbsp;address&nbsp;&nbsp;2&nbsp;&nbsp;address&nbsp;&nbsp;3
+        </li>
+        <li>02-0000-0000</li>
+      </ul>
+    </footer>
+    <script>
+      let inputName = "";
+      let inputEmail = "";
+      let inputPhone = "";
+      let inputPwd = "";
+      let inputPwdConfirm = "";
+      document.querySelector("#registerBtn").addEventListener(
+        "click",
+        () => {
+          inputName = document.getElementById("name");
+          if (inputName.value === "") {
+            alert("input name value");
+            inputName.focus();
+            return; // 함수 빠져나감
+          }
+
+          inputEmail = document.getElementById("email");
+          if (inputEmail.value === "") {
+            alert("input email value");
+            inputEmail.focus();
+            return; // 함수 빠져나감
+          } else if (inputEmail.value.indexOf("@") === -1) {
+            alert("check email value");
+            inputEmail.value = "";
+            inputEmail.focus();
+            return; // 함수 빠져나감
+          }
+
+          inputPhone = document.getElementById("phone");
+          if (inputPhone.value === "") {
+            alert("input phone value");
+            inputPhone.focus();
+            return; // 함수 빠져나감
+          }
+
+          inputPwd = document.getElementById("pwd");
+          if (inputPwd.value === "") {
+            alert("input password value");
+            inputPwd.focus();
+            return; // 함수 빠져나감
+          }
+
+          inputPwdConfirm = document.getElementById("pwdConfirm");
+          if (inputPwdConfirm.value === "") {
+            alert("input pwdConfirm value");
+            inputPwdConfirm.focus();
+            return; // 함수 빠져나감
+          }
+
+          if (inputPwd.value !== inputPwdConfirm.value) {
+            alert("dismatch password & pwdConfirm value");
+            inputPwd.value = "";
+            inputPwdConfirm.value = "";
+            inputPwd.focus();
+            return; // 함수 빠져나감
+          }
+          console.log(inputName.value);
+          console.log(inputEmail.value);
+          console.log(inputPhone.value);
+          console.log(inputPwd.value);
+          document.querySelector("form").submit();
+        },
+        false
+      );
+
+      // let state = true;
+
+      // function validateCheck(obj) {
+      //   if (obj.value === "") {
+      //     alert("input value");
+      //     obj.value.focus();
+      //     return true;
+      //   } else return false;
+      // }
+
+      // document.querySelectorAll("input").forEach((inputEle) => {
+      //   if (state) {
+      //     if (validateCheck(inputEle)) {
+      //       state = false;
+      //     }
+      //   }
+      // });
+    </script>
+  </body>
+</html>

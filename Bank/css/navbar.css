@@ -1,0 +1,41 @@
+header nav ul li a {
+  text-decoration: none;
+}
+
+header nav ul li a:link {
+  color: red;
+}
+
+header nav ul li a:visited {
+  color: green;
+}
+/*
+보안상의 이유로 visited는 css 변경이 제한적(색 변경 가능)
+*/
+
+header nav ul li a:hover {
+  color: violet;
+  text-decoration: underline;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 글자의 수직 가운데 정렬 */
+}
+
+nav ul li {
+  list-style-type: none;
+  margin: 0px 10px; /* 상하 0, 좌우 10px씩 부여 */
+}
+
+nav ul li a img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+nav {
+  background-color: aliceblue;
+  padding: 5px;
+}
