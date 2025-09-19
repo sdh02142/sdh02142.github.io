@@ -62,12 +62,13 @@ document.body /* body 부분은 생략 가능 */
           console.log(mockData);
         }
       }
+      updateIdData();
+      loadData();
+      idData--;
     }
-    updateIdData();
-    // initData(mockData); //호출한다.(다시 화면 랜더링)
-    loadData();
-    idData--;
   });
+
+//searchTodo
 
 const initData = (printData) => {
   for (let i = 0; i < printData.length; i++) {
@@ -85,20 +86,49 @@ onclick =”todoDel(this)” 추가
 const loadData = () => {
   if (mockData.length === 0) return;
   document.querySelector(".todos_wrapper").innerHTML = "";
-  for (let i = 0; i < idData; i++) {
-    if (localStorage.getItem(i)) {
-      let ob = localStorage.getItem(i).split(",");
-      let checkOp = "";
-      let re = new Function("return " + ob[1]);
-      if (re()) checkOp = "checked";
-      document.querySelector(
-        ".todos_wrapper"
-      ).innerHTML += `<div class="TodoItem">
+  console.log(document.getElementById("searchTodo").value.trim());
+  if (document.getElementById("searchTodo").value) {
+    for (let i = 0; i < idData; i++) {
+      if (localStorage.getItem(i)) {
+        let ob = localStorage.getItem(i).split(",");
+        console.log(ob[2]);
+        if (
+          ob[2].indexOf(document.getElementById("searchTodo").value.trim()) ===
+          -1
+        )
+          continue;
+        else {
+          let checkOp = "";
+          let re = new Function("return " + ob[1]);
+          if (re()) checkOp = "checked";
+          document.querySelector(
+            ".todos_wrapper"
+          ).innerHTML += `<div class="TodoItem">
             <input type="checkbox" id="${ob[0]}" ${checkOp}/>
             <div class="content">${ob[2]}</div>
             <div class="date">${new Date(Number(ob[3])).toLocaleString()}</div>
             <button onclick="" value="삭제">삭제</button>
           </div>`;
+        }
+      }
+    }
+  } else {
+    for (let i = 0; i < idData; i++) {
+      if (localStorage.getItem(i)) {
+        let ob = localStorage.getItem(i).split(",");
+        let checkOp = "";
+        let re = new Function("return " + ob[1]);
+        if (re()) checkOp = "checked";
+        document.querySelector(
+          ".todos_wrapper"
+        ).innerHTML += `<div class="TodoItem">
+            <input type="checkbox" id="${ob[0]}" ${checkOp}/>
+            <div class="content">${ob[2]}</div>
+            <div class="date">${new Date(Number(ob[3])).toLocaleString()}</div>
+            <button onclick="" value="삭제">삭제</button>
+          </div>`;
+      }
     }
   }
 };
+document.getElementById("searchTodo").addEventListener("input", loadData);
