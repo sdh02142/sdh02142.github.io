@@ -57,7 +57,7 @@ function loadVeggies() {
     alert('상품이 없습니다.');
     return;
    } else if (veggies.length-veggiePage < 3){
-    veggies.slice(veggiePage);
+    loadThreeveg = veggies.slice(veggiePage);
     veggiePage += veggies.length-veggiePage;
    } else {
     loadThreeveg = veggies.slice(veggiePage, veggiePage+3);
