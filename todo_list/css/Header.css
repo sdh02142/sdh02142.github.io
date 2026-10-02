@@ -1,3 +1,19 @@
-.Header>h1{
+.Header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Header > h1 {
     color: rgb(37, 147, 255);
+}
+
+.Header-top > button {
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    border: none;
+    color: white;
+    background-color: rgb(37, 147, 255);
+    border-radius: 5px;
 }
